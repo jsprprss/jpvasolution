@@ -1,16 +1,14 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Premium fluid background:
- * - Aurora gradient mesh (animated conic + radial)
- * - Diagonal light sweeps
- * - Floating glowing particles on canvas (no grid, no lines)
- * - Cursor-reactive ambient glow
- * Adapts to dark/light via CSS vars.
+ * Pure black futuristic background:
+ * - Solid black base
+ * - Soft drifting cyan/teal ambient blobs (very low opacity)
+ * - Thin diagonal flowing light streaks on canvas
+ * - Subtle floating particles
  */
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -23,10 +21,10 @@ export function AnimatedBackground() {
     let height = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    type P = { x: number; y: number; vx: number; vy: number; r: number; hue: number; life: number };
+    type P = { x: number; y: number; vy: number; vx: number; r: number; a: number };
+    type S = { x: number; y: number; len: number; speed: number; angle: number; alpha: number; hue: 0 | 1 };
     let particles: P[] = [];
-
-    const isDark = () => !document.documentElement.classList.contains("light");
+    let streaks: S[] = [];
 
     const setSize = () => {
       width = canvas.clientWidth;
@@ -34,73 +32,74 @@ export function AnimatedBackground() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const target = Math.min(40, Math.floor((width * height) / 48000));
-      particles = Array.from({ length: target }, () => spawn());
+      const pCount = Math.min(35, Math.floor((width * height) / 60000));
+      particles = Array.from({ length: pCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: -Math.random() * 0.18 - 0.03,
+        r: Math.random() * 1.4 + 0.3,
+        a: Math.random() * 0.4 + 0.1,
+      }));
+      streaks = Array.from({ length: 6 }, () => spawnStreak());
     };
-    const spawn = (): P => ({
-      x: Math.random() * (canvas.clientWidth || window.innerWidth),
-      y: Math.random() * (canvas.clientHeight || window.innerHeight),
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: -Math.random() * 0.25 - 0.05,
-      r: Math.random() * 1.8 + 0.4,
-      hue: Math.random(),
-      life: Math.random() * 1,
-    });
-    setSize();
 
-    const mouse = { x: -9999, y: -9999 };
-    const onMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-      if (glowRef.current) {
-        glowRef.current.style.transform = `translate3d(${e.clientX - 350}px, ${e.clientY - 350}px, 0)`;
-      }
-    };
-    window.addEventListener("mousemove", onMove, { passive: true });
+    const spawnStreak = (): S => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      len: 120 + Math.random() * 220,
+      speed: 0.4 + Math.random() * 0.7,
+      angle: -Math.PI / 6 + (Math.random() - 0.5) * 0.2,
+      alpha: 0,
+      hue: Math.random() > 0.5 ? 0 : 1,
+    });
+
+    setSize();
     const onResize = () => setSize();
     window.addEventListener("resize", onResize);
 
     const draw = () => {
-      const dark = isDark();
       ctx.clearRect(0, 0, width, height);
 
+      // streaks
+      for (const s of streaks) {
+        s.x += Math.cos(s.angle) * s.speed;
+        s.y += Math.sin(s.angle) * s.speed;
+        s.alpha = Math.min(s.alpha + 0.004, 0.35);
+
+        if (s.x - s.len > width || s.y - s.len > height) {
+          Object.assign(s, spawnStreak(), {
+            x: -s.len,
+            y: Math.random() * height,
+            alpha: 0,
+          });
+        }
+
+        const x2 = s.x - Math.cos(s.angle) * s.len;
+        const y2 = s.y - Math.sin(s.angle) * s.len;
+        const grad = ctx.createLinearGradient(s.x, s.y, x2, y2);
+        const color = s.hue === 0 ? "180, 230, 235" : "100, 180, 200";
+        grad.addColorStop(0, `rgba(${color}, ${s.alpha})`);
+        grad.addColorStop(1, `rgba(${color}, 0)`);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(s.x, s.y);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+      }
+
+      // particles
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
-        p.life += 0.0025;
-
-        if (p.y < -10 || p.x < -10 || p.x > width + 10 || p.life > 1) {
-          Object.assign(p, spawn(), { y: height + 10 });
+        if (p.y < -10) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
         }
-
-        // gentle attraction toward mouse for ambient feel
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 40000) {
-          p.vx += (dx / (Math.sqrt(d2) + 1)) * 0.0008;
-          p.vy += (dy / (Math.sqrt(d2) + 1)) * 0.0008;
-        }
-        // damping
-        p.vx *= 0.995;
-        p.vy = Math.max(p.vy * 0.998, -0.4);
-
-        const alpha = (1 - Math.abs(p.life - 0.5) * 2) * (dark ? 0.22 : 0.18);
-        const color = p.hue > 0.5
-          ? (dark ? `rgba(150, 210, 220, ${alpha})` : `rgba(60, 140, 160, ${alpha})`)
-          : (dark ? `rgba(120, 180, 200, ${alpha})` : `rgba(90, 160, 175, ${alpha})`);
-
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
-        grad.addColorStop(0, color);
-        grad.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.fillStyle = grad;
+        ctx.fillStyle = `rgba(170, 220, 230, ${p.a * 0.5})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 0.8, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -110,25 +109,16 @@ export function AnimatedBackground() {
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
-    <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-background transition-colors duration-700" />
-      <div className="absolute inset-0 bg-aurora" />
-      <div className="absolute -inset-[20%] bg-sweep mix-blend-screen" />
-      <div className="absolute top-[-20%] left-[-10%] h-[45vw] w-[45vw] rounded-full blob-cyan animate-blob-a" />
-      <div className="absolute top-[30%] right-[-15%] h-[50vw] w-[50vw] rounded-full blob-teal animate-blob-b" />
-      <div className="absolute bottom-[-25%] left-[25%] h-[40vw] w-[40vw] rounded-full blob-cyan animate-blob-c" />
+    <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-black">
+      <div className="absolute top-[-15%] left-[-10%] h-[55vw] w-[55vw] rounded-full blob-cyan animate-blob-a" />
+      <div className="absolute top-[40%] right-[-20%] h-[60vw] w-[60vw] rounded-full blob-teal animate-blob-b" />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      <div
-        ref={glowRef}
-        className="absolute h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_70%)] opacity-[0.05] blur-3xl will-change-transform"
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_55%,_var(--background)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_60%,_rgba(0,0,0,0.85)_100%)]" />
     </div>
   );
 }
