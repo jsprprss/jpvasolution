@@ -111,6 +111,8 @@ function Index() {
         <CapabilitiesGrid />
       </section>
 
+      <WorkflowShowcase />
+
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
