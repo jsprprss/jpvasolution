@@ -37,7 +37,7 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-8">
@@ -89,16 +89,18 @@ function Index() {
         </div>
       </section>
 
-      {/* MARQUEE STRIP */}
-      <section className="border-y border-border bg-card/40">
-        <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground text-teal-200">
-          <span>GOHIGHLEVEL</span><span>/</span>
-          <span>ZAPIER</span><span>/</span>
-          <span>MAKE</span><span>/</span>
-          <span>OPENAI</span><span>/</span>
-          <span>STRIPE</span><span>/</span>
-          <span>TWILIO</span><span>/</span>
-          <span>SUPABASE</span>
+      {/* TECH STACK STRIP */}
+      <section className="relative">
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <div className="flex items-center gap-6">
+            <span className="hidden md:inline-flex font-mono text-[10px] tracking-[0.3em] text-primary whitespace-nowrap">// STACK</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 font-mono text-[11px] tracking-[0.32em] text-muted-foreground">
+            {["GOHIGHLEVEL","ZAPIER","MAKE","OPENAI","STRIPE","TWILIO","SUPABASE"].map((t) => (
+              <span key={t} className="hover:text-primary transition-colors">{t}</span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -132,7 +134,7 @@ function Index() {
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
-          <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+          <div className="absolute inset-0 opacity-40 pointer-events-none" />
           <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
           <div className="relative grid md:grid-cols-2 gap-10 items-center">
             <div>
