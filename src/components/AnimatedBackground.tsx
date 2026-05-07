@@ -34,7 +34,7 @@ export function AnimatedBackground() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const target = Math.min(70, Math.floor((width * height) / 26000));
+      const target = Math.min(40, Math.floor((width * height) / 48000));
       particles = Array.from({ length: target }, () => spawn());
     };
     const spawn = (): P => ({
