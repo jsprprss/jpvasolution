@@ -114,7 +114,7 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
           <div className="absolute inset-0 opacity-40 pointer-events-none" />
-          <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
           <div className="relative grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// LET'S BUILD</div>
