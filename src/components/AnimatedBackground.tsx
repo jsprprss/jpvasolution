@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Premium animated background:
- * - Canvas particle field with connection lines (cyan/teal)
- * - Animated gradient orbs (CSS)
- * - Grid overlay
- * - Cursor-reactive parallax glow
- * Adapts automatically to light/dark via CSS variables.
+ * Premium fluid background:
+ * - Aurora gradient mesh (animated conic + radial)
+ * - Diagonal light sweeps
+ * - Floating glowing particles on canvas (no grid, no lines)
+ * - Cursor-reactive ambient glow
+ * Adapts to dark/light via CSS vars.
  */
 export function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -21,9 +21,9 @@ export function AnimatedBackground() {
 
     let width = 0;
     let height = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    type P = { x: number; y: number; vx: number; vy: number; r: number };
+    type P = { x: number; y: number; vx: number; vy: number; r: number; hue: number; life: number };
     let particles: P[] = [];
 
     const isDark = () => !document.documentElement.classList.contains("light");
@@ -34,15 +34,18 @@ export function AnimatedBackground() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const target = Math.min(90, Math.floor((width * height) / 18000));
-      particles = Array.from({ length: target }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        r: Math.random() * 1.6 + 0.4,
-      }));
+      const target = Math.min(70, Math.floor((width * height) / 26000));
+      particles = Array.from({ length: target }, () => spawn());
     };
+    const spawn = (): P => ({
+      x: Math.random() * (canvas.clientWidth || window.innerWidth),
+      y: Math.random() * (canvas.clientHeight || window.innerHeight),
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -Math.random() * 0.25 - 0.05,
+      r: Math.random() * 1.8 + 0.4,
+      hue: Math.random(),
+      life: Math.random() * 1,
+    });
     setSize();
 
     const mouse = { x: -9999, y: -9999 };
@@ -50,7 +53,7 @@ export function AnimatedBackground() {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       if (glowRef.current) {
-        glowRef.current.style.transform = `translate3d(${e.clientX - 300}px, ${e.clientY - 300}px, 0)`;
+        glowRef.current.style.transform = `translate3d(${e.clientX - 350}px, ${e.clientY - 350}px, 0)`;
       }
     };
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -61,48 +64,46 @@ export function AnimatedBackground() {
       const dark = isDark();
       ctx.clearRect(0, 0, width, height);
 
-      const dotColor = dark ? "rgba(125, 230, 240, " : "rgba(20, 130, 160, ";
-      const lineColor = dark ? "rgba(125, 230, 240, " : "rgba(20, 130, 160, ";
-
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+        p.life += 0.0025;
 
-        // mouse repel
-        const dx = p.x - mouse.x;
-        const dy = p.y - mouse.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 < 14000) {
-          const f = (14000 - d2) / 14000;
-          p.x += (dx / Math.sqrt(d2 + 1)) * f * 0.6;
-          p.y += (dy / Math.sqrt(d2 + 1)) * f * 0.6;
+        if (p.y < -10 || p.x < -10 || p.x > width + 10 || p.life > 1) {
+          Object.assign(p, spawn(), { y: height + 10 });
         }
 
+        // gentle attraction toward mouse for ambient feel
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < 40000) {
+          p.vx += (dx / (Math.sqrt(d2) + 1)) * 0.0008;
+          p.vy += (dy / (Math.sqrt(d2) + 1)) * 0.0008;
+        }
+        // damping
+        p.vx *= 0.995;
+        p.vy = Math.max(p.vy * 0.998, -0.4);
+
+        const alpha = (1 - Math.abs(p.life - 0.5) * 2) * (dark ? 0.55 : 0.35);
+        const color = p.hue > 0.5
+          ? (dark ? `rgba(120, 230, 240, ${alpha})` : `rgba(40, 150, 175, ${alpha})`)
+          : (dark ? `rgba(80, 180, 210, ${alpha})` : `rgba(80, 170, 190, ${alpha})`);
+
+        // soft glow
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 8);
+        grad.addColorStop(0, color);
+        grad.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.fillStyle = dotColor + "0.7)";
+        ctx.arc(p.x, p.y, p.r * 8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // core
+        ctx.fillStyle = color;
+        ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
-      }
-
-      // connection lines
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < 14000) {
-            const alpha = (1 - d2 / 14000) * (dark ? 0.25 : 0.18);
-            ctx.strokeStyle = lineColor + alpha + ")";
-            ctx.lineWidth = 0.6;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
       }
 
       rafRef.current = requestAnimationFrame(draw);
@@ -118,23 +119,31 @@ export function AnimatedBackground() {
 
   return (
     <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* base gradient backdrop */}
+      {/* base */}
       <div className="absolute inset-0 bg-background transition-colors duration-700" />
-      {/* animated orbs */}
-      <div className="absolute -top-40 -left-40 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_60%)] opacity-30 blur-3xl animate-orb-a" />
-      <div className="absolute top-1/3 -right-40 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,_var(--teal)_0%,_transparent_60%)] opacity-25 blur-3xl animate-orb-b" />
-      <div className="absolute bottom-0 left-1/3 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_60%)] opacity-20 blur-3xl animate-orb-c" />
-      {/* grid */}
-      <div className="absolute inset-0 bg-grid-anim opacity-[0.35]" />
+
+      {/* aurora mesh */}
+      <div className="absolute inset-0 bg-aurora opacity-90" />
+
+      {/* diagonal light sweep */}
+      <div className="absolute -inset-[20%] bg-sweep mix-blend-screen opacity-40 dark:opacity-60" />
+
+      {/* drifting blobs */}
+      <div className="absolute top-[-20%] left-[-10%] h-[55vw] w-[55vw] rounded-full blob-cyan animate-blob-a" />
+      <div className="absolute top-[20%] right-[-15%] h-[60vw] w-[60vw] rounded-full blob-teal animate-blob-b" />
+      <div className="absolute bottom-[-25%] left-[20%] h-[50vw] w-[50vw] rounded-full blob-cyan animate-blob-c" />
+
       {/* particles */}
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+
       {/* cursor glow */}
       <div
         ref={glowRef}
-        className="absolute h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_65%)] opacity-[0.12] blur-2xl will-change-transform"
+        className="absolute h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_65%)] opacity-[0.10] blur-3xl will-change-transform"
       />
-      {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_55%,_var(--background)_100%)]" />
+
+      {/* film grain + vignette for cinematic depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_var(--background)_100%)]" />
     </div>
   );
 }
