@@ -121,6 +121,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AnimatedBackground />
+      <WelcomeIntro />
       <Outlet />
     </QueryClientProvider>
   );
