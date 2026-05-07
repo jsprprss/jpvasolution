@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
+import { WorkflowShowcase } from "@/components/WorkflowShowcase";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 export const Route = createFileRoute("/")({
@@ -109,6 +110,8 @@ function Index() {
         </div>
         <CapabilitiesGrid />
       </section>
+
+      <WorkflowShowcase />
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-12">

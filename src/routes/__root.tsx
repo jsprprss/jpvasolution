@@ -10,6 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { WelcomeIntro } from "@/components/WelcomeIntro";
 
 function NotFoundComponent() {
   return (
@@ -120,6 +121,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AnimatedBackground />
+      <WelcomeIntro />
       <Outlet />
     </QueryClientProvider>
   );

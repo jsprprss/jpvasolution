@@ -36,8 +36,8 @@
 
 :root {
   --radius: 0.5rem;
-  /* Refined dark: deep neutral with restrained teal */
-  --background: oklch(0.115 0.006 220);
+  /* Pure black base */
+  --background: oklch(0 0 0);
   --foreground: oklch(0.96 0.004 220);
   --card: oklch(0.155 0.008 220);
   --card-foreground: oklch(0.96 0.004 220);
@@ -179,15 +179,15 @@ html.light {
 
   /* Soft drifting blobs — restrained */
   .blob-cyan {
-    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 28%, transparent) 0%, transparent 65%);
-    filter: blur(110px);
-    opacity: .28;
+    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 18%, transparent) 0%, transparent 70%);
+    filter: blur(140px);
+    opacity: .14;
     will-change: transform;
   }
   .blob-teal {
-    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 30%, transparent) 0%, transparent 65%);
-    filter: blur(120px);
-    opacity: .25;
+    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 22%, transparent) 0%, transparent 70%);
+    filter: blur(150px);
+    opacity: .12;
     will-change: transform;
   }
   html.light .blob-cyan, html.light .blob-teal { opacity: .22; filter: blur(120px); }
