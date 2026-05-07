@@ -89,16 +89,18 @@ function Index() {
         </div>
       </section>
 
-      {/* MARQUEE STRIP */}
-      <section className="border-y border-border bg-card/40">
-        <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground text-teal-200">
-          <span>GOHIGHLEVEL</span><span>/</span>
-          <span>ZAPIER</span><span>/</span>
-          <span>MAKE</span><span>/</span>
-          <span>OPENAI</span><span>/</span>
-          <span>STRIPE</span><span>/</span>
-          <span>TWILIO</span><span>/</span>
-          <span>SUPABASE</span>
+      {/* TECH STACK STRIP */}
+      <section className="relative">
+        <div className="mx-auto max-w-7xl px-6 py-10">
+          <div className="flex items-center gap-6">
+            <span className="hidden md:inline-flex font-mono text-[10px] tracking-[0.3em] text-primary whitespace-nowrap">// STACK</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 font-mono text-[11px] tracking-[0.32em] text-muted-foreground">
+            {["GOHIGHLEVEL","ZAPIER","MAKE","OPENAI","STRIPE","TWILIO","SUPABASE"].map((t) => (
+              <span key={t} className="hover:text-primary transition-colors">{t}</span>
+            ))}
+          </div>
         </div>
       </section>
 
