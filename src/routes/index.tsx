@@ -90,7 +90,7 @@ function Index() {
 
       {/* MARQUEE STRIP */}
       <section className="border-y border-border bg-card/40">
-        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] tracking-[0.3em] text-muted-foreground">
+        <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground text-teal-200">
           <span>GOHIGHLEVEL</span><span>/</span>
           <span>ZAPIER</span><span>/</span>
           <span>MAKE</span><span>/</span>
