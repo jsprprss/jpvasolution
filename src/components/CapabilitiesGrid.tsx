@@ -10,7 +10,6 @@ import {
   Mail,
   BarChart3,
   ArrowRight,
-  X,
   type LucideIcon,
 } from "lucide-react";
 
@@ -194,19 +193,11 @@ export function CapabilitiesGrid() {
 
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
         <DialogContent
-          showCloseButton={false}
           className="max-w-3xl p-0 overflow-hidden border-border bg-card/80 backdrop-blur-2xl"
         >
           {active && (
             <div className="relative">
               <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_60%)] opacity-15 blur-3xl pointer-events-none" />
-              <button
-                onClick={() => setActive(null)}
-                className="absolute top-4 right-4 z-10 h-8 w-8 grid place-items-center rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-primary transition"
-                aria-label="Close"
-              >
-                <X size={14} />
-              </button>
 
               <div className="relative p-8 md:p-10">
                 <div className="flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-primary mb-4">
