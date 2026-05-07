@@ -46,7 +46,7 @@ function Index() {
               AVAILABLE FOR NEW PROJECTS — Q2 / 2026
             </div>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95]">
-              Engineering<br />
+              Automating<br />
               <span className="text-gradient">GoHighLevel</span> systems<br />
               that scale.
             </h1>
