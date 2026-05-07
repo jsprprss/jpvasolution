@@ -18,11 +18,7 @@ export function SiteNav() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
           </div>
           <div className="leading-none">
-            <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground leading-relaxed uppercase">
-              High converting<br />
-              GoHighLevel systems<br />
-              that scale.
-            </div>
+            <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">JPVA SOLUTION</div>
             <div className="text-sm font-semibold tracking-wide">JASPER PRESAS</div>
           </div>
         </Link>
