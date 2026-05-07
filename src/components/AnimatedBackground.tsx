@@ -114,11 +114,13 @@ export function AnimatedBackground() {
   }, []);
 
   return (
-    <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-black">
+    <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none bg-background">
+      <div className="absolute inset-0 bg-aurora opacity-90" />
+      <div className="absolute inset-0 bg-sweep" />
       <div className="absolute top-[-15%] left-[-10%] h-[55vw] w-[55vw] rounded-full blob-cyan animate-blob-a" />
       <div className="absolute top-[40%] right-[-20%] h-[60vw] w-[60vw] rounded-full blob-teal animate-blob-b" />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_60%,_rgba(0,0,0,0.85)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_60%,_color-mix(in_oklab,_var(--background)_85%,_transparent)_100%)]" />
     </div>
   );
 }
