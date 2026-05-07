@@ -147,7 +147,7 @@ html.light {
   .corner-frame::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
   .hover-glow { transition: box-shadow .35s ease, transform .35s ease, border-color .35s ease; }
-  .hover-glow:hover { box-shadow: 0 0 30px color-mix(in oklab, var(--cyan) 50%, transparent); transform: translateY(-2px); }
+  .hover-glow:hover { box-shadow: 0 0 18px color-mix(in oklab, var(--cyan) 22%, transparent); transform: translateY(-2px); border-color: color-mix(in oklab, var(--cyan) 40%, transparent); }
 
   .magnetic { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
   .magnetic:hover { transform: translateY(-2px) scale(1.02); }
