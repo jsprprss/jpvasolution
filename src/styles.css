@@ -203,8 +203,8 @@ html.light {
 .animate-scan { animation: scan 4s linear infinite; }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px color-mix(in oklab, var(--cyan) 40%, transparent); }
-  50% { box-shadow: 0 0 40px color-mix(in oklab, var(--cyan) 75%, transparent); }
+  0%, 100% { box-shadow: 0 0 10px color-mix(in oklab, var(--cyan) 18%, transparent); }
+  50% { box-shadow: 0 0 18px color-mix(in oklab, var(--cyan) 32%, transparent); }
 }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 
