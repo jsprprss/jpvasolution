@@ -25,7 +25,7 @@ function ContactPage() {
       <SiteNav />
 
       <section className="relative">
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-60" />
+        <div className="absolute inset-0 pointer-events-none opacity-60" />
         <div className="mx-auto max-w-5xl px-6 py-24 relative">
           <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-4">// CONTACT / 05</div>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tight">

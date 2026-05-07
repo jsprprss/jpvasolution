@@ -37,7 +37,7 @@ function Index() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
         <div className="mx-auto max-w-7xl px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-8">
@@ -134,7 +134,7 @@ function Index() {
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
-          <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+          <div className="absolute inset-0 opacity-40 pointer-events-none" />
           <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
           <div className="relative grid md:grid-cols-2 gap-10 items-center">
             <div>
