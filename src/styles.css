@@ -36,34 +36,31 @@
 
 :root {
   --radius: 0.5rem;
-  /* AMG Petronas inspired: deep black, cyan, teal */
-  --background: oklch(0.13 0.012 220);
-  --foreground: oklch(0.97 0.005 220);
-  --card: oklch(0.17 0.015 220);
-  --card-foreground: oklch(0.97 0.005 220);
-  --popover: oklch(0.15 0.015 220);
-  --popover-foreground: oklch(0.97 0.005 220);
-  --primary: oklch(0.82 0.14 195);             /* cyan */
-  --primary-foreground: oklch(0.13 0.012 220);
-  --secondary: oklch(0.22 0.02 220);
-  --secondary-foreground: oklch(0.97 0.005 220);
-  --muted: oklch(0.20 0.015 220);
-  --muted-foreground: oklch(0.68 0.02 220);
-  --accent: oklch(0.65 0.12 210);               /* teal blue */
-  --accent-foreground: oklch(0.13 0.012 220);
+  /* Refined dark: deep neutral with restrained teal */
+  --background: oklch(0.115 0.006 220);
+  --foreground: oklch(0.96 0.004 220);
+  --card: oklch(0.155 0.008 220);
+  --card-foreground: oklch(0.96 0.004 220);
+  --popover: oklch(0.14 0.008 220);
+  --popover-foreground: oklch(0.96 0.004 220);
+  --primary: oklch(0.78 0.10 195);
+  --primary-foreground: oklch(0.115 0.006 220);
+  --secondary: oklch(0.20 0.012 220);
+  --secondary-foreground: oklch(0.96 0.004 220);
+  --muted: oklch(0.18 0.01 220);
+  --muted-foreground: oklch(0.66 0.012 220);
+  --accent: oklch(0.58 0.08 205);
+  --accent-foreground: oklch(0.115 0.006 220);
   --destructive: oklch(0.62 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.27 0.02 220 / 60%);
-  --input: oklch(0.25 0.02 220);
-  --ring: oklch(0.82 0.14 195);
-  --cyan: oklch(0.85 0.16 195);
-  --teal: oklch(0.62 0.13 210);
+  --border: oklch(0.26 0.012 220 / 55%);
+  --input: oklch(0.22 0.012 220);
+  --ring: oklch(0.78 0.10 195);
+  --cyan: oklch(0.80 0.11 195);
+  --teal: oklch(0.58 0.09 210);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.85 0.16 195), oklch(0.62 0.13 210));
-  --gradient-radial: radial-gradient(circle at 50% 0%, oklch(0.30 0.10 200 / 0.45), transparent 60%);
-  --gradient-grid: linear-gradient(oklch(0.30 0.04 220 / 0.25) 1px, transparent 1px),
-                   linear-gradient(90deg, oklch(0.30 0.04 220 / 0.25) 1px, transparent 1px);
-  --shadow-glow: 0 0 40px oklch(0.82 0.14 195 / 0.35);
+  --gradient-primary: linear-gradient(135deg, oklch(0.80 0.11 195), oklch(0.58 0.09 210));
+  --shadow-glow: 0 0 22px oklch(0.78 0.10 195 / 0.18);
   --shadow-elevated: 0 20px 60px -20px oklch(0 0 0 / 0.7);
 }
 
@@ -150,21 +147,20 @@ html.light {
   .corner-frame::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
   .hover-glow { transition: box-shadow .35s ease, transform .35s ease, border-color .35s ease; }
-  .hover-glow:hover { box-shadow: 0 0 30px color-mix(in oklab, var(--cyan) 50%, transparent); transform: translateY(-2px); }
+  .hover-glow:hover { box-shadow: 0 0 18px color-mix(in oklab, var(--cyan) 22%, transparent); transform: translateY(-2px); border-color: color-mix(in oklab, var(--cyan) 40%, transparent); }
 
   .magnetic { transition: transform .25s cubic-bezier(.2,.7,.2,1); }
   .magnetic:hover { transform: translateY(-2px) scale(1.02); }
 
-  /* Aurora mesh — replaces grid */
+  /* Aurora mesh — softened */
   .bg-aurora {
     background:
-      radial-gradient(ellipse 80% 60% at 20% 10%, color-mix(in oklab, var(--cyan) 28%, transparent), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 80% 30%, color-mix(in oklab, var(--teal) 24%, transparent), transparent 65%),
-      radial-gradient(ellipse 90% 70% at 50% 100%, color-mix(in oklab, var(--cyan) 18%, transparent), transparent 70%),
-      radial-gradient(ellipse 60% 40% at 10% 90%, color-mix(in oklab, var(--teal) 20%, transparent), transparent 70%);
+      radial-gradient(ellipse 70% 50% at 20% 10%, color-mix(in oklab, var(--cyan) 12%, transparent), transparent 65%),
+      radial-gradient(ellipse 60% 45% at 80% 30%, color-mix(in oklab, var(--teal) 10%, transparent), transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 100%, color-mix(in oklab, var(--cyan) 8%, transparent), transparent 75%);
     background-size: 200% 200%;
-    animation: aurora-shift 28s ease-in-out infinite alternate;
-    filter: blur(40px);
+    animation: aurora-shift 38s ease-in-out infinite alternate;
+    filter: blur(60px);
   }
 
   /* Diagonal cinematic light sweep */
@@ -172,31 +168,31 @@ html.light {
     background:
       linear-gradient(115deg,
         transparent 0%,
-        transparent 35%,
-        color-mix(in oklab, var(--cyan) 14%, transparent) 50%,
-        transparent 65%,
+        transparent 40%,
+        color-mix(in oklab, var(--cyan) 6%, transparent) 50%,
+        transparent 60%,
         transparent 100%);
     background-size: 300% 300%;
-    animation: sweep-move 18s linear infinite;
-    filter: blur(20px);
+    animation: sweep-move 28s linear infinite;
+    filter: blur(30px);
   }
 
-  /* Soft drifting blobs */
+  /* Soft drifting blobs — restrained */
   .blob-cyan {
-    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 50%, transparent) 0%, transparent 60%);
-    filter: blur(80px);
-    opacity: .55;
+    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 28%, transparent) 0%, transparent 65%);
+    filter: blur(110px);
+    opacity: .28;
     will-change: transform;
   }
   .blob-teal {
-    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 55%, transparent) 0%, transparent 60%);
-    filter: blur(90px);
-    opacity: .50;
+    background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 30%, transparent) 0%, transparent 65%);
+    filter: blur(120px);
+    opacity: .25;
     will-change: transform;
   }
-  html.light .blob-cyan, html.light .blob-teal { opacity: .35; filter: blur(110px); }
-  html.light .bg-aurora { opacity: .55; }
-  html.light .bg-sweep { opacity: .25; }
+  html.light .blob-cyan, html.light .blob-teal { opacity: .22; filter: blur(120px); }
+  html.light .bg-aurora { opacity: .60; }
+  html.light .bg-sweep { opacity: .20; }
 }
 
 @keyframes scan {
@@ -207,8 +203,8 @@ html.light {
 .animate-scan { animation: scan 4s linear infinite; }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px color-mix(in oklab, var(--cyan) 40%, transparent); }
-  50% { box-shadow: 0 0 40px color-mix(in oklab, var(--cyan) 75%, transparent); }
+  0%, 100% { box-shadow: 0 0 10px color-mix(in oklab, var(--cyan) 18%, transparent); }
+  50% { box-shadow: 0 0 18px color-mix(in oklab, var(--cyan) 32%, transparent); }
 }
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 

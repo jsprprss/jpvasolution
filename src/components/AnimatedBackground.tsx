@@ -34,7 +34,7 @@ export function AnimatedBackground() {
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const target = Math.min(70, Math.floor((width * height) / 26000));
+      const target = Math.min(40, Math.floor((width * height) / 48000));
       particles = Array.from({ length: target }, () => spawn());
     };
     const spawn = (): P => ({
@@ -85,24 +85,22 @@ export function AnimatedBackground() {
         p.vx *= 0.995;
         p.vy = Math.max(p.vy * 0.998, -0.4);
 
-        const alpha = (1 - Math.abs(p.life - 0.5) * 2) * (dark ? 0.55 : 0.35);
+        const alpha = (1 - Math.abs(p.life - 0.5) * 2) * (dark ? 0.22 : 0.18);
         const color = p.hue > 0.5
-          ? (dark ? `rgba(120, 230, 240, ${alpha})` : `rgba(40, 150, 175, ${alpha})`)
-          : (dark ? `rgba(80, 180, 210, ${alpha})` : `rgba(80, 170, 190, ${alpha})`);
+          ? (dark ? `rgba(150, 210, 220, ${alpha})` : `rgba(60, 140, 160, ${alpha})`)
+          : (dark ? `rgba(120, 180, 200, ${alpha})` : `rgba(90, 160, 175, ${alpha})`);
 
-        // soft glow
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 8);
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
         grad.addColorStop(0, color);
         grad.addColorStop(1, "rgba(0,0,0,0)");
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 8, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
         ctx.fill();
 
-        // core
         ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r * 0.8, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -119,31 +117,18 @@ export function AnimatedBackground() {
 
   return (
     <div aria-hidden className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* base */}
       <div className="absolute inset-0 bg-background transition-colors duration-700" />
-
-      {/* aurora mesh */}
-      <div className="absolute inset-0 bg-aurora opacity-90" />
-
-      {/* diagonal light sweep */}
-      <div className="absolute -inset-[20%] bg-sweep mix-blend-screen opacity-40 dark:opacity-60" />
-
-      {/* drifting blobs */}
-      <div className="absolute top-[-20%] left-[-10%] h-[55vw] w-[55vw] rounded-full blob-cyan animate-blob-a" />
-      <div className="absolute top-[20%] right-[-15%] h-[60vw] w-[60vw] rounded-full blob-teal animate-blob-b" />
-      <div className="absolute bottom-[-25%] left-[20%] h-[50vw] w-[50vw] rounded-full blob-cyan animate-blob-c" />
-
-      {/* particles */}
+      <div className="absolute inset-0 bg-aurora" />
+      <div className="absolute -inset-[20%] bg-sweep mix-blend-screen" />
+      <div className="absolute top-[-20%] left-[-10%] h-[45vw] w-[45vw] rounded-full blob-cyan animate-blob-a" />
+      <div className="absolute top-[30%] right-[-15%] h-[50vw] w-[50vw] rounded-full blob-teal animate-blob-b" />
+      <div className="absolute bottom-[-25%] left-[25%] h-[40vw] w-[40vw] rounded-full blob-cyan animate-blob-c" />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-
-      {/* cursor glow */}
       <div
         ref={glowRef}
-        className="absolute h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_65%)] opacity-[0.10] blur-3xl will-change-transform"
+        className="absolute h-[700px] w-[700px] rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_70%)] opacity-[0.05] blur-3xl will-change-transform"
       />
-
-      {/* film grain + vignette for cinematic depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_var(--background)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_55%,_var(--background)_100%)]" />
     </div>
   );
 }

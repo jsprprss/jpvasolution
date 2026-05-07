@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { Reveal } from "@/components/Reveal";
+import { CapabilitiesGrid } from "@/components/CapabilitiesGrid";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 export const Route = createFileRoute("/")({
@@ -21,14 +21,6 @@ const stats = [
   { k: "Based", v: "PH / Remote" },
 ];
 
-const services = [
-  { code: "01", title: "GoHighLevel Build-Outs", desc: "Sub-accounts, snapshots, pipelines, calendars, and SaaS configuration engineered for scale." },
-  { code: "02", title: "Automation Architecture", desc: "Multi-step workflows across Zapier, Make, and native GHL — connecting every tool you run." },
-  { code: "03", title: "AI Integrations", desc: "AI receptionists, lead qualifiers, and content engines wired into your CRM and conversations." },
-  { code: "04", title: "Funnels & Sites", desc: "High-converting funnels, websites, and booking flows built natively in HighLevel." },
-  { code: "05", title: "Email & SMS Systems", desc: "Reactivation, nurture, and sales sequences with deliverability dialed in." },
-  { code: "06", title: "Reporting & Ops", desc: "Dashboards, attribution, and SOPs so the system runs without you." },
-];
 
 function Index() {
   return (
@@ -46,7 +38,7 @@ function Index() {
               AVAILABLE FOR NEW PROJECTS — Q2 / 2026
             </div>
             <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95]">
-              Engineering<br />
+              Automating<br />
               <span className="text-gradient">GoHighLevel</span> systems<br />
               that scale.
             </h1>
@@ -54,7 +46,7 @@ function Index() {
               Experienced GoHighLevel specialist building automation, AI workflows, and conversion machines for any business — from solo operators to multi-location brands.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover-glow transition magnetic">
+              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover-glow transition magnetic">
                 Start a project <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
               <Link to="/services" className="ripple inline-flex items-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition magnetic">
@@ -115,27 +107,14 @@ function Index() {
             View all →
           </Link>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {services.map((s, i) => (
-            <Reveal key={s.code} delay={i * 80}>
-              <div className="bg-card p-8 group hover:bg-secondary/40 transition-colors hover-glow h-full">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="font-mono text-[11px] tracking-[0.3em] text-primary">{s.code}</span>
-                  <span className="h-px w-12 bg-border group-hover:bg-primary transition-colors" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <CapabilitiesGrid />
       </section>
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-6 pb-12">
         <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
           <div className="absolute inset-0 opacity-40 pointer-events-none" />
-          <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
           <div className="relative grid md:grid-cols-2 gap-10 items-center">
             <div>
               <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// LET'S BUILD</div>
@@ -143,7 +122,7 @@ function Index() {
               <p className="mt-4 text-muted-foreground">Tell me about your business. I'll map the automations and HighLevel build that move the needle.</p>
             </div>
             <div className="flex md:justify-end">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover:opacity-90 transition">
+              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover:opacity-90 transition">
                 Book a discovery call →
               </Link>
             </div>

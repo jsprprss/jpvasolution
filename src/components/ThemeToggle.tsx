@@ -34,7 +34,7 @@ export function ThemeToggle() {
       className="relative h-8 w-[60px] rounded-full border border-border bg-card/60 backdrop-blur-md overflow-hidden group transition-all hover:border-primary"
     >
       <span
-        className="absolute top-1 left-1 h-6 w-6 rounded-full bg-primary text-primary-foreground grid place-items-center transition-transform duration-500 ease-[cubic-bezier(.6,.05,.2,1)] shadow-[0_0_18px_var(--cyan)]"
+        className="absolute top-1 left-1 h-6 w-6 rounded-full bg-primary text-primary-foreground grid place-items-center transition-transform duration-500 ease-[cubic-bezier(.6,.05,.2,1)] shadow-sm"
         style={{ transform: isDark ? "translateX(0)" : "translateX(28px)" }}
       >
         {isDark ? <Moon size={12} /> : <Sun size={12} />}
