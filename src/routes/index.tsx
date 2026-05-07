@@ -46,7 +46,7 @@ function Index() {
               Experienced GoHighLevel specialist building automation, AI workflows, and conversion machines for any business — from solo operators to multi-location brands.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover-glow transition magnetic">
+              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover-glow transition magnetic">
                 Start a project <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
               <Link to="/services" className="ripple inline-flex items-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition magnetic">
@@ -122,7 +122,7 @@ function Index() {
               <p className="mt-4 text-muted-foreground">Tell me about your business. I'll map the automations and HighLevel build that move the needle.</p>
             </div>
             <div className="flex md:justify-end">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover:opacity-90 transition">
+              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover:opacity-90 transition">
                 Book a discovery call →
               </Link>
             </div>
