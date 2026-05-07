@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { Reveal } from "@/components/Reveal";
 import heroImg from "@/assets/hero-portrait.jpg";
 
 export const Route = createFileRoute("/")({
@@ -53,10 +54,10 @@ function Index() {
               Experienced GoHighLevel specialist building automation, AI workflows, and conversion machines for any business — from solo operators to multi-location brands.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <Link to="/contact" className="group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover:opacity-90 transition">
+              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover-glow transition magnetic">
                 Start a project <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition">
+              <Link to="/services" className="ripple inline-flex items-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition magnetic">
                 Explore services
               </Link>
             </div>
@@ -113,15 +114,17 @@ function Index() {
           </Link>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {services.map((s) => (
-            <div key={s.code} className="bg-card p-8 group hover:bg-secondary/40 transition-colors">
-              <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-[11px] tracking-[0.3em] text-primary">{s.code}</span>
-                <span className="h-px w-12 bg-border group-hover:bg-primary transition-colors" />
+          {services.map((s, i) => (
+            <Reveal key={s.code} delay={i * 80}>
+              <div className="bg-card p-8 group hover:bg-secondary/40 transition-colors hover-glow h-full">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="font-mono text-[11px] tracking-[0.3em] text-primary">{s.code}</span>
+                  <span className="h-px w-12 bg-border group-hover:bg-primary transition-colors" />
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

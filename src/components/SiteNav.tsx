@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { to: "/", label: "Home" },
@@ -35,12 +36,15 @@ export function SiteNav() {
             </Link>
           ))}
         </nav>
-        <Link
-          to="/contact"
-          className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-widest border border-primary/60 text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-md"
-        >
-          Book a call <span aria-hidden>→</span>
-        </Link>
+        <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono uppercase tracking-widest border border-primary/60 text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-md hover-glow ripple"
+          >
+            Book a call <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </header>
   );
