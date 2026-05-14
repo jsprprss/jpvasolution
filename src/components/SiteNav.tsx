@@ -19,8 +19,8 @@ export function SiteNav() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
           </div>
           <div className="leading-none">
-            <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground uppercase">JPVA SOLUTION</div>
-            <div className="text-sm font-semibold tracking-wide">JASPER PRESAS</div>
+            <div className="font-mono text-sm font-semibold tracking-[0.3em] text-foreground uppercase">JPVA SOLUTION</div>
+            <div className="text-[10px] font-mono tracking-[0.3em] text-muted-foreground uppercase mt-1">JASPER PRESAS</div>
           </div>
         </Link>
         <nav className="hidden md:flex items-center gap-1">
