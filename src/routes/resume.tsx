@@ -37,22 +37,23 @@ function ResumePage() {
     <div className="min-h-screen flex flex-col">
       <SiteNav />
 
-      <section className="mx-auto max-w-5xl px-6 py-20">
-        <div className="flex items-end justify-between mb-10">
+      <section className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-20">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
             <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// RESUME / 04</div>
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight">Jasper Presas</h1>
-            <p className="mt-3 text-lg text-muted-foreground">GoHighLevel Specialist & Automation Expert</p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight">Jasper Presas</h1>
+            <p className="mt-3 text-base sm:text-lg text-muted-foreground">GoHighLevel Specialist & Automation Expert</p>
           </div>
           <button onClick={() => window.print()} className="hidden md:inline-flex items-center gap-2 px-4 py-2 border border-border rounded-md font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition">
             Print / PDF
           </button>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-border border border-border">
+
+        <div className="grid sm:grid-cols-3 gap-px bg-border border border-border">
           <div className="bg-card p-5">
             <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">EMAIL</div>
-            <div className="text-sm mt-1">jsprprss@gmail.com</div>
+            <div className="text-sm mt-1 break-words">jsprprss@gmail.com</div>
           </div>
           <div className="bg-card p-5">
             <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">PHONE</div>
@@ -63,6 +64,7 @@ function ResumePage() {
             <div className="text-sm mt-1">Laguna, Philippines</div>
           </div>
         </div>
+
 
         {/* SUMMARY */}
         <div className="mt-16">

@@ -158,14 +158,14 @@ export function CapabilitiesGrid() {
 
   return (
     <>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
         {capabilities.map((s, i) => {
           const Icon = s.icon;
           return (
             <Reveal key={s.code} delay={i * 70}>
               <button
                 onClick={() => setActive(s)}
-                className="relative w-full text-left bg-card p-8 group transition-all duration-500 hover:bg-card/60 h-full overflow-hidden focus:outline-none focus:ring-1 focus:ring-primary/50"
+                className="relative w-full text-left bg-card p-6 sm:p-8 group transition-all duration-500 hover:bg-card/60 h-full overflow-hidden focus:outline-none focus:ring-1 focus:ring-primary/50"
               >
                 <div
                   aria-hidden
@@ -193,25 +193,26 @@ export function CapabilitiesGrid() {
 
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
         <DialogContent
-          className="max-w-3xl p-0 overflow-hidden border-border bg-card/80 backdrop-blur-2xl"
+          className="max-w-3xl w-[95vw] sm:w-auto max-h-[92vh] overflow-y-auto p-0 border-border bg-card/80 backdrop-blur-2xl"
         >
           {active && (
             <div className="relative">
               <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,_var(--cyan)_0%,_transparent_60%)] opacity-15 blur-3xl pointer-events-none" />
 
-              <div className="relative p-8 md:p-10">
+              <div className="relative p-6 sm:p-8 md:p-10">
                 <div className="flex items-center gap-3 font-mono text-[10px] tracking-[0.3em] text-primary mb-4">
                   <span>// CAPABILITY</span>
                   <span className="text-muted-foreground">{active.code}</span>
                 </div>
 
-                <DialogTitle className="text-3xl md:text-4xl font-semibold tracking-tight">
+                <DialogTitle className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">
                   {active.title}
                 </DialogTitle>
 
-                <p className="mt-4 text-muted-foreground leading-relaxed max-w-2xl">{active.detail}</p>
+                <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">{active.detail}</p>
 
-                <div className="mt-8 grid md:grid-cols-2 gap-8">
+                <div className="mt-8 grid sm:grid-cols-2 gap-6 sm:gap-8">
+
                   <div>
                     <div className="font-mono text-[10px] tracking-[0.3em] text-primary mb-3">// PROCESS</div>
                     <ol className="space-y-2 text-sm">

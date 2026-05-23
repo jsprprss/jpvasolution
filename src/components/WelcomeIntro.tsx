@@ -45,12 +45,13 @@ export function WelcomeIntro() {
       {/* ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,_rgba(120,200,210,0.10)_0%,_transparent_70%)] blur-3xl animate-pulse-glow pointer-events-none" />
 
-      <div className="relative flex flex-col items-center gap-6">
+      <div className="relative flex flex-col items-center gap-6 px-6 text-center">
         <div className="font-mono text-[10px] tracking-[0.4em] text-primary/70">// JPVA SOLUTION</div>
-        <div key={idx} className="text-6xl md:text-8xl font-semibold tracking-tight text-foreground intro-word">
+        <div key={idx} className="text-5xl sm:text-6xl md:text-8xl font-semibold tracking-tight text-foreground intro-word break-words">
           {current.text}
         </div>
         <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">{current.lang}</div>
+
 
         <div className="mt-8 flex items-center gap-3">
           {GREETINGS.map((_, i) => (

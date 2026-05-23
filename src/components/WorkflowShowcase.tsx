@@ -77,16 +77,17 @@ export function WorkflowShowcase() {
   const [open, setOpen] = useState<Item | null>(null);
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-28">
-      <div className="flex items-end justify-between mb-12">
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-28">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
         <div>
           <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// WORKFLOW SHOWCASE</div>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">Real systems. Real results.</h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Real systems. Real results.</h2>
+          <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl">
             A look inside the GoHighLevel workflows, AI bots, and CRM pipelines I've architected for clients.
           </p>
         </div>
       </div>
+
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {ITEMS.map((item, i) => (

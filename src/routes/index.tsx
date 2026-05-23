@@ -32,29 +32,29 @@ function Index() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-        <div className="mx-auto max-w-7xl px-6 pt-20 pb-28 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-3 font-mono text-[11px] tracking-[0.3em] text-primary">
-              <span className="h-2 w-2 rounded-full bg-primary animate-pulse-glow" />
-              AVAILABLE FOR NEW PROJECTS — Q2 / 2026
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 sm:pt-20 pb-20 sm:pb-28 grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6 sm:space-y-8">
+            <div className="inline-flex items-center gap-3 font-mono text-[10px] sm:text-[11px] tracking-[0.3em] text-primary">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse-glow shrink-0" />
+              <span className="truncate">AVAILABLE FOR NEW PROJECTS — Q2 / 2026</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.02] lg:leading-[0.95]">
               Automating<br />
               <span className="text-gradient">GoHighLevel</span> systems<br />
               that scale.
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-xl">
               Experienced GoHighLevel specialist building automation, AI workflows, and conversion machines for any business — from solo operators to multi-location brands.
             </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <Link to="/contact" className="ripple group inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover-glow transition magnetic">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+              <Link to="/contact" className="ripple group inline-flex items-center justify-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover-glow transition magnetic">
                 Start a project <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
-              <Link to="/services" className="ripple inline-flex items-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition magnetic">
+              <Link to="/services" className="ripple inline-flex items-center justify-center gap-3 px-6 py-3 rounded-md border border-border text-foreground font-mono text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition magnetic">
                 Explore services
               </Link>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-border mt-12 border border-border">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-border mt-10 sm:mt-12 border border-border">
               {stats.map((s) => (
                 <div key={s.k} className="bg-card p-4">
                   <div className="font-mono text-[10px] tracking-[0.25em] text-muted-foreground">{s.k.toUpperCase()}</div>
@@ -62,6 +62,7 @@ function Index() {
                 </div>
               ))}
             </div>
+
           </div>
 
           <div className="lg:col-span-5">
@@ -98,11 +99,11 @@ function Index() {
       </section>
 
       {/* SERVICES */}
-      <section className="mx-auto max-w-7xl px-6 py-28">
-        <div className="flex items-end justify-between mb-12">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-20 sm:py-28">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
           <div>
             <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// CAPABILITIES</div>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight">Systems built for velocity.</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Systems built for velocity.</h2>
           </div>
           <Link to="/services" className="hidden md:inline-flex font-mono text-xs uppercase tracking-widest text-muted-foreground hover:text-primary">
             View all →
@@ -111,27 +112,29 @@ function Index() {
         <CapabilitiesGrid />
       </section>
 
+
       <WorkflowShowcase />
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 pb-12">
-        <div className="relative overflow-hidden rounded-lg border border-border bg-card p-12 md:p-16">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-12">
+        <div className="relative overflow-hidden rounded-lg border border-border bg-card p-6 sm:p-12 md:p-16">
           <div className="absolute inset-0 opacity-40 pointer-events-none" />
           <div className="absolute -top-32 -right-32 h-96 w-96 rounded-full bg-primary/8 blur-3xl" />
-          <div className="relative grid md:grid-cols-2 gap-10 items-center">
+          <div className="relative grid md:grid-cols-2 gap-8 md:gap-10 items-center">
             <div>
               <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-3">// LET'S BUILD</div>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Ready to deploy a smarter system?</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight">Ready to deploy a smarter system?</h2>
               <p className="mt-4 text-muted-foreground">Tell me about your business. I'll map the automations and HighLevel build that move the needle.</p>
             </div>
             <div className="flex md:justify-end">
-              <Link to="/contact" className="inline-flex items-center gap-3 px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover:opacity-90 transition">
+              <Link to="/contact" className="w-full md:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest hover:opacity-90 transition">
                 Book a discovery call →
               </Link>
             </div>
           </div>
         </div>
       </section>
+
 
       <SiteFooter />
     </div>
