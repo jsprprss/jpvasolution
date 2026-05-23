@@ -26,21 +26,21 @@ function ContactPage() {
 
       <section className="relative">
         <div className="absolute inset-0 pointer-events-none opacity-60" />
-        <div className="mx-auto max-w-5xl px-6 py-24 relative">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-24 relative">
           <div className="font-mono text-[11px] tracking-[0.3em] text-primary mb-4">// CONTACT / 05</div>
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-tight">
             Let's build your <span className="text-gradient">growth engine.</span>
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
+          <p className="mt-5 sm:mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl">
             Send a quick note about your business and what you'd like automated. I reply within one business day.
           </p>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-px bg-border border border-border">
+          <div className="mt-12 sm:mt-16 grid sm:grid-cols-2 gap-px bg-border border border-border">
             {channels.map((c) => {
               const Inner = (
-                <div className="bg-card p-6 h-full hover:bg-secondary/40 transition">
+                <div className="bg-card p-5 sm:p-6 h-full hover:bg-secondary/40 transition">
                   <div className="font-mono text-[10px] tracking-[0.3em] text-muted-foreground">{c.label}</div>
-                  <div className="text-lg mt-2 font-medium">{c.value}</div>
+                  <div className="text-base sm:text-lg mt-2 font-medium break-words">{c.value}</div>
                 </div>
               );
               return c.href ? (
@@ -55,23 +55,24 @@ function ContactPage() {
             action="mailto:jsprprss@gmail.com"
             method="post"
             encType="text/plain"
-            className="mt-16 grid gap-5 border border-border rounded-md bg-card p-8"
+            className="mt-12 sm:mt-16 grid gap-5 border border-border rounded-md bg-card p-5 sm:p-8"
           >
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5">
               <Field label="Name" name="name" />
               <Field label="Email" name="email" type="email" />
             </div>
             <Field label="Business / Website" name="business" />
             <div>
               <Label>Project</Label>
-              <textarea name="message" rows={5} className="w-full bg-background border border-border rounded-md px-4 py-3 text-sm focus:outline-none focus:border-primary" placeholder="Tell me about what you want to automate…" />
+              <textarea name="message" rows={5} className="w-full bg-background border border-border rounded-md px-4 py-3 text-base sm:text-sm focus:outline-none focus:border-primary" placeholder="Tell me about what you want to automate…" />
             </div>
-            <button type="submit" className="justify-self-start inline-flex items-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover:opacity-90 transition">
+            <button type="submit" className="w-full sm:w-auto sm:justify-self-start inline-flex items-center justify-center gap-3 px-6 py-3 rounded-md bg-primary text-primary-foreground font-mono text-xs uppercase tracking-widest glow hover:opacity-90 transition">
               Send inquiry →
             </button>
           </form>
         </div>
       </section>
+
 
       <SiteFooter />
     </div>
@@ -86,7 +87,8 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
   return (
     <div>
       <Label>{label}</Label>
-      <input type={type} name={name} className="w-full bg-background border border-border rounded-md px-4 py-3 text-sm focus:outline-none focus:border-primary" />
+      <input type={type} name={name} className="w-full bg-background border border-border rounded-md px-4 py-3 text-base sm:text-sm focus:outline-none focus:border-primary" />
     </div>
   );
 }
+
