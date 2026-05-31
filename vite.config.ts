@@ -6,4 +6,9 @@ export default defineConfig({
       entry: "server",
     },
   },
+
+  preview: {
+    host: "0.0.0.0",
+    allowedHosts: true,
+  },
 });
