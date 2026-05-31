@@ -67,13 +67,13 @@ function Index() {
 
           <div className="lg:col-span-5">
             <div className="relative corner-frame p-2">
-              <div className="relative overflow-hidden rounded-sm">
-                <img src={heroImg} alt="Jasper Presas" className="w-full aspect-square object-cover" />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 pointer-events-none">
-                  <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-primary/15 to-transparent animate-scan" />
-
+              <div className="relative overflow-hidden rounded-sm aspect-square bg-gradient-to-br from-card via-background to-card">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,hsl(var(--primary)/0.18),transparent_65%)] pointer-events-none" />
+                <img src={heroImg} alt="Jasper Presas" className="relative z-10 w-full h-full object-contain" />
+                <div className="absolute inset-0 pointer-events-none z-20">
+                  <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-primary/10 to-transparent animate-scan" />
                 </div>
+
                 <div className="absolute bottom-4 left-4 right-4 flex justify-between font-mono text-[10px] tracking-[0.3em] text-primary">
                   <span>ID // 0x4A53</span>
                   <span>PH / LAGUNA</span>
