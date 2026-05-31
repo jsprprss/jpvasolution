@@ -6,12 +6,4 @@ export default defineConfig({
       entry: "server",
     },
   },
-
-  server: {
-    allowedHosts: ["jpvasolution.onrender.com"],
-  },
-
-  preview: {
-    allowedHosts: ["jpvasolution.onrender.com"],
-  },
 });
