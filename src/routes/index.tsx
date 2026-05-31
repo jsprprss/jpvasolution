@@ -74,10 +74,11 @@ function Index() {
                   <div className="absolute left-0 right-0 h-24 bg-gradient-to-b from-primary/10 to-transparent animate-scan" />
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 flex justify-between font-mono text-[10px] tracking-[0.3em] text-primary">
+                <div className="absolute bottom-4 left-4 right-4 z-30 flex justify-between font-mono text-[10px] tracking-[0.3em] text-primary">
                   <span>ID // 0x4A53</span>
                   <span>PH / LAGUNA</span>
                 </div>
+
               </div>
             </div>
           </div>
