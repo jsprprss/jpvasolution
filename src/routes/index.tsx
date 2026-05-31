@@ -68,6 +68,9 @@ function Index() {
           <div className="lg:col-span-5">
             <div className="relative aspect-square">
               <img src={heroImg} alt="Jasper Presas" className="relative z-10 w-full h-full object-contain" />
+              {/* Bottom corner shade to soften the square edge */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 z-20 rounded-b-2xl bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-8 z-20 rounded-b-2xl bg-gradient-to-t from-background to-transparent pointer-events-none" />
             </div>
           </div>
 
