@@ -1,7 +1,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  cloudflare: false,
   tanstackStart: {
     // Prerender every route to static HTML so the build output can be served
     // by a static host (Render Static Site, Netlify, etc.) without a Node server.
