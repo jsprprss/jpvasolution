@@ -131,6 +131,7 @@ html.light {
     animation: grid-pan 24s linear infinite;
   }
   .glow { box-shadow: var(--shadow-glow); }
+  .tracking-label { letter-spacing: 0.3em; }
   .glass {
     background: color-mix(in oklab, var(--card) 60%, transparent);
     backdrop-filter: blur(14px) saturate(140%);
@@ -190,19 +191,19 @@ html.light {
   .blob-cyan {
     background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 18%, transparent) 0%, transparent 70%);
     filter: blur(140px);
-    opacity: .14;
+    opacity: .10;
     will-change: transform;
   }
   .blob-teal {
     background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 22%, transparent) 0%, transparent 70%);
     filter: blur(150px);
-    opacity: .12;
+    opacity: .09;
     will-change: transform;
   }
-  html.light .blob-cyan { opacity: .28; filter: blur(110px); background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--cyan) 30%, transparent) 0%, transparent 70%); }
-  html.light .blob-teal { opacity: .22; filter: blur(120px); background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--teal) 28%, transparent) 0%, transparent 70%); }
-  html.light .bg-aurora { opacity: .55; }
-  html.light .bg-sweep  { opacity: .25; }
+  html.light .blob-cyan { opacity: .07; filter: blur(120px); background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--foreground) 14%, transparent) 0%, transparent 70%); }
+  html.light .blob-teal { opacity: .06; filter: blur(130px); background: radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--foreground) 12%, transparent) 0%, transparent 70%); }
+  html.light .bg-aurora { opacity: .35; }
+  html.light .bg-sweep  { opacity: .18; }
   html.light .hover-glow:hover { box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--cyan) 22%, transparent); }
   html.light .glass {
     background: color-mix(in oklab, white 70%, transparent);
