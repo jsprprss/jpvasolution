@@ -131,6 +131,7 @@ html.light {
     animation: grid-pan 24s linear infinite;
   }
   .glow { box-shadow: var(--shadow-glow); }
+  .on-media { color: oklch(0.98 0 0); }
   .tracking-label { letter-spacing: 0.3em; }
   .glass {
     background: color-mix(in oklab, var(--card) 60%, transparent);

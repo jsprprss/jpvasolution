@@ -103,14 +103,14 @@ export function WorkflowShowcase() {
                 width={1280}
                 height={800}
                 loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                className="h-full w-full object-cover grayscale contrast-[1.05] transition-all duration-700 group-hover:scale-[1.04] group-hover:grayscale-0"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/0 via-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.3em] text-primary/90 bg-black/40 backdrop-blur-md px-2 py-1 rounded">
+              <div className="absolute top-3 left-3 font-mono text-[10px] tracking-[0.3em] on-media bg-black/40 backdrop-blur-md px-2 py-1 rounded">
                 // 0{i + 1}
               </div>
-              <div className="absolute top-3 right-3 font-mono text-[10px] tracking-[0.25em] text-primary/90 bg-black/40 backdrop-blur-md px-2 py-1 rounded">
+              <div className="absolute top-3 right-3 font-mono text-[10px] tracking-[0.25em] on-media bg-black/40 backdrop-blur-md px-2 py-1 rounded">
                 {item.metric.value}
               </div>
             </div>
@@ -144,9 +144,9 @@ export function WorkflowShowcase() {
                 <img
                   src={open.src}
                   alt={open.title}
-                  className="w-full h-auto max-h-[70vh] object-contain"
+                  className="w-full h-auto max-h-[70vh] object-contain grayscale"
                 />
-                <div className="absolute top-4 left-4 font-mono text-[10px] tracking-[0.3em] text-primary bg-black/50 backdrop-blur px-3 py-1.5 rounded">
+                <div className="absolute top-4 left-4 font-mono text-[10px] tracking-[0.3em] on-media bg-black/50 backdrop-blur px-3 py-1.5 rounded">
                   // GOHIGHLEVEL WORKFLOW
                 </div>
               </div>
