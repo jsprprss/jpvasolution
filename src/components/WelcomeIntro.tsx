@@ -43,7 +43,7 @@ export function WelcomeIntro() {
       className={`fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-700 ${fading ? "opacity-0 pointer-events-none" : "opacity-100"}`}
     >
       {/* ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,_rgba(120,200,210,0.10)_0%,_transparent_70%)] blur-3xl animate-pulse-glow pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,_rgba(255,255,255,0.08)_0%,_transparent_70%)] blur-3xl animate-pulse-glow pointer-events-none" />
 
       <div className="relative flex flex-col items-center gap-6 px-6 text-center">
         <div className="font-mono text-[10px] tracking-[0.4em] text-primary/70">// JPVA SOLUTION</div>

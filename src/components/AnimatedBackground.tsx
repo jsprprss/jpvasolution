@@ -78,7 +78,7 @@ export function AnimatedBackground() {
         const x2 = s.x - Math.cos(s.angle) * s.len;
         const y2 = s.y - Math.sin(s.angle) * s.len;
         const grad = ctx.createLinearGradient(s.x, s.y, x2, y2);
-        const color = s.hue === 0 ? "180, 230, 235" : "100, 180, 200";
+        const color = s.hue === 0 ? "255, 255, 255" : "160, 160, 160";
         grad.addColorStop(0, `rgba(${color}, ${s.alpha})`);
         grad.addColorStop(1, `rgba(${color}, 0)`);
         ctx.strokeStyle = grad;
@@ -97,7 +97,7 @@ export function AnimatedBackground() {
           p.y = height + 10;
           p.x = Math.random() * width;
         }
-        ctx.fillStyle = `rgba(170, 220, 230, ${p.a * 0.5})`;
+        ctx.fillStyle = `rgba(235, 235, 235, ${p.a * 0.45})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
